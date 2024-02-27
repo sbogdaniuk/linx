@@ -4,9 +4,9 @@ import { Header } from "../components/header";
 
 export const Layout = () => {
   return (
-    <div className="flex w-full">
-      <Sidebar />
-      <div className="grow">
+    <div className="w-full">
+      <Sidebar className='w-16 md:w-[200px]' />
+      <div className="ml-16 md:ml-[200px]">
         <Header />
         <div className="p-4">
           <Outlet />
