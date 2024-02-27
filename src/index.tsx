@@ -1,9 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientConfig,
+  QueryClientProvider,
+} from "react-query";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { router } from "./router";
+
+const RQ_CONFIG: QueryClientConfig = {
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+      refetchInterval: false,
+      refetchOnMount: true
+    }
+  }
+};
+const queryClient = new QueryClient(RQ_CONFIG)
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -11,7 +28,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
