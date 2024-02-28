@@ -1,10 +1,10 @@
 import { Layout } from './routes/layout'
 import { Dashboard } from './routes/dashboard'
 import { Users } from './routes/users'
-import { createBrowserRouter, RouteObject } from 'react-router-dom'
+import { RouteObject } from 'react-router-dom'
 import { ErrorPage } from './components/error-page'
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
@@ -21,5 +21,3 @@ const routes: RouteObject[] = [
     ],
   },
 ];
-
-export const router = createBrowserRouter(routes);

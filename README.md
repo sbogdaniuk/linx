@@ -29,7 +29,7 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm test`
-TBD
+To mock BE data we use [https://v1.mswjs.io/docs/](msw@1) server
 
 ### `npm run build`
 

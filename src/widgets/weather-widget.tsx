@@ -53,7 +53,7 @@ export function Weather({ location }: Props) {
   }
 
   function renderData() {
-    if (!data) return null;
+    if (!data?.current) return null;
 
     return (
       <div>
@@ -79,38 +79,42 @@ export function Weather({ location }: Props) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col border-t border-t-gray-300">
-            <div className="flex justify-between px-3 py-2 border-b border-b-gray-300">
+          <ul className="flex flex-col border-t border-t-gray-300" aria-label="weather info">
+            <li className="flex justify-between px-3 py-2 border-b border-b-gray-300">
               <div>Temperature</div>
               <Temperature value={data.current.temp_c} />
-            </div>
-            <div className="flex justify-between px-3 py-2 border-b border-b-gray-300">
+            </li>
+            <li className="flex justify-between px-3 py-2 border-b border-b-gray-300">
               <div>Feels like</div>
               <Temperature value={data.current.feelslike_c} />
-            </div>
-            <div className="flex justify-between px-3 py-2 border-b border-b-gray-300">
+            </li>
+            <li className="flex justify-between px-3 py-2 border-b border-b-gray-300">
               <div>Humidity</div>
               <Percent value={data.current.humidity} />
-            </div>
-            <div className="flex justify-between px-3 py-2">
+            </li>
+            <li className="flex justify-between px-3 py-2">
               <div>Wind</div>
               <Distance value={data.current.wind_kph} />
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
-        <span className="text-gray-500 text-xs my-4">
-          API data last updated: {data.current.last_updated}
-          <br />
-          Last fetched at: <FormatDate date={Date.now()} />
-          <br />
-          <span
-            className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
-            onClick={() => refetch()}
-          >
-            Refresh
-          </span>
-        </span>
+        <div className="text-gray-500 text-xs my-4">
+          <p>
+            API data last updated: {data.current.last_updated}
+          </p>
+          <p>
+            Last fetched at: <FormatDate date={Date.now()} />
+          </p>
+          <p>
+            <span
+              className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+              onClick={() => refetch()}
+            >
+              Refresh
+            </span>
+          </p>
+        </div>
       </div>
     );
   }
